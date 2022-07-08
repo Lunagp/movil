@@ -17,7 +17,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     var n : Int = 0
-    var p : Int = 0
+//    var p : Int = 0
+    var x : Int = 0
+    var a : Boolean = false
+    var b : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +29,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         ram()
+        conteo(null, null)
     }
 
     private fun conteo(mili:Int?, coun: Int?) {
         if (mili == null && coun == null){
-            object : CountDownTimer(3000, 1000) {
+            object : CountDownTimer(60000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                 }
 
                 override fun onFinish() {
-                    ram()
+                    termine()
                 }
             }.start()
         }else if (mili != null && coun != null) {
@@ -46,17 +50,36 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
-                    ram()
+                    termine()
                 }
             }.start()
 
         }
 
     }
+    private fun termine(){
+        if (n == null){
+            n = 0
+            var resul = n.toString()
+            var intent = Intent(this,Resul::class.java)
+            intent.putExtra("resul", resul)
+            startActivity(intent)
+            finish()
+        }else {
+            var resul = n.toString()
+            var intent = Intent(this,Resul::class.java)
+            intent.putExtra("resul", resul)
+            startActivity(intent)
+            finish()
+        }
+    }
 
 
 
     private fun ram() {
+            x = 0
+            a = false
+            b = false
             val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
             val negro: Int = resources.getColor(R.color.black)
             val azul: Int = resources.getColor(R.color.Blue)
@@ -73,71 +96,100 @@ class MainActivity : AppCompatActivity() {
             binding.txtPalabra.text = pal
             binding.txtPalabra.setTextColor(col)
 
-
             binding.btncorre.setOnClickListener {
-                p++
-                if (p >= 15 ){
-                    if (n == null){
-                        n = 0
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }else {
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }
-                }else {
+                x = 1
+                a = true
+            }
 
+            binding.btnincorre.setOnClickListener {
+                x = 2
+                b = true
+            }
+
+            if (a == false && b == false){
+                object : CountDownTimer(3000, 1000) {
+
+                    override fun onTick(millisUntilFinished: Long) {
+                    }
+
+                    override fun onFinish() {
+                        presionar(pal,col)
+                    }
+                }.start()
+            }
+    }
+
+    private fun presionar(pal:String, col:Int) {
+        when(x){
+            1 -> {
+//                p++
+//                if (p >= 15 ){
+//                    if (n == null){
+//                        n = 0
+//                        var resul = n.toString()
+//                        var intent = Intent(this,Resul::class.java)
+//                        intent.putExtra("resul", resul)
+//                        startActivity(intent)
+//                    }else {
+//                        var resul = n.toString()
+//                        var intent = Intent(this,Resul::class.java)
+//                        intent.putExtra("resul", resul)
+//                        startActivity(intent)
+//                    }
+//                }else {
+                    x = 0
                     correcto(pal,col)
                     ram()
-                    conteo(null,null)
-                }
-            }
-            binding.btnincorre.setOnClickListener {
-                p++
-                if (p >= 15 ){
-                    if (n == null){
-                        n = 0
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }else {
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }
-                }else {
+//                }
 
+            }
+            2 -> {
+//                p++
+//                if (p >= 15 ){
+//                    if (n == null){
+//                        n = 0
+//                        var resul = n.toString()
+//                        var intent = Intent(this,Resul::class.java)
+//                        intent.putExtra("resul", resul)
+//                        startActivity(intent)
+//                    }else {
+//                        var resul = n.toString()
+//                        var intent = Intent(this,Resul::class.java)
+//                        intent.putExtra("resul", resul)
+//                        startActivity(intent)
+//                    }
+//                }else {
+                    x = 0
                     incorrecto(pal,col)
+                    Toast.makeText(this, "Fallaste", Toast.LENGTH_SHORT).show()
                     ram()
-                    conteo(null,null)
-                }
-            }
+//                }
 
-        if (p <= 15){
-            conteo(null, null)
-            p++
-        }else if (p >= 15 ){
-            if (n == null){
-                n = 0
-                var resul = n.toString()
-                var intent = Intent(this,Resul::class.java)
-                intent.putExtra("resul", resul)
-                startActivity(intent)
-            }else {
-                var resul = n.toString()
-                var intent = Intent(this,Resul::class.java)
-                intent.putExtra("resul", resul)
-                startActivity(intent)
+            }
+            else -> {
+//                if (p < 15){
+                    x = 0
+                    binding.img.setImageResource(R.drawable.incorrecto)
+                    Toast.makeText(this, "Fallaste", Toast.LENGTH_SHORT).show()
+                    ram()
+//                    p++
+//                }else if (p >= 15 ){
+//                    if (n == null){
+//                        n = 0
+//                        var resul = n.toString()
+//                        var intent = Intent(this,Resul::class.java)
+//                        intent.putExtra("resul", resul)
+//                        startActivity(intent)
+//                    }else {
+//                        var resul = n.toString()
+//                        var intent = Intent(this,Resul::class.java)
+//                        intent.putExtra("resul", resul)
+//                        startActivity(intent)
+//                    }
+//                }
             }
         }
     }
-
 
 
     private fun incorrecto(pal:String, col:Int) {
