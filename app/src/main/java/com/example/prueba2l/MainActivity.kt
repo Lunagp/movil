@@ -1,22 +1,14 @@
 package com.example.prueba2l
 
-import android.annotation.SuppressLint
-import android.content.Context
+
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Movie
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.SharedPreferencesCompat
-import com.bumptech.glide.Glide
 import com.example.prueba2l.IniciarAplicativo.Companion.prefs
 import com.example.prueba2l.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -41,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun conteo(mili:Int?, coun: Int?) {
         if (mili == null && coun == null){
-            object : CountDownTimer(61000, 1000) {
+            object : CountDownTimer(30000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                 }
@@ -89,8 +81,6 @@ class MainActivity : AppCompatActivity() {
         x = 0
         binding.btncorre.isEnabled = true
         binding.btnincorre.isEnabled = true
-//        a = false
-//        b = false
         val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
         val negro: Int = resources.getColor(R.color.black)
         val azul: Int = resources.getColor(R.color.Blue)
@@ -109,33 +99,25 @@ class MainActivity : AppCompatActivity() {
 
         binding.btncorre.setOnClickListener {
             x = 1
-            a = true
             binding.btncorre.isEnabled = false
             binding.btnincorre.isEnabled = false
         }
 
         binding.btnincorre.setOnClickListener {
             x = 2
-            b = true
             binding.btncorre.isEnabled = false
             binding.btnincorre.isEnabled = false
         }
 
-//        if (a == true || b == true){
-//            binding.btncorre.isEnabled = false
-//            binding.btnincorre.isEnabled = false
-//        }
-//        else if (a == false && b == false){
-            object : CountDownTimer(3000, 1000) {
+        object : CountDownTimer(3000, 1000) {
 
-                override fun onTick(millisUntilFinished: Long) {
-                }
+            override fun onTick(millisUntilFinished: Long) {
+            }
 
-                override fun onFinish() {
-                    presionar(pal,col)
-                }
-            }.start()
-//        }
+            override fun onFinish() {
+                presionar(pal,col)
+            }
+        }.start()
     }
 
     private fun presionar(pal:String, col:Int) {

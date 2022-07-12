@@ -13,7 +13,6 @@ class Prefs(val context: Context) {
     }
 
     fun mostrar():String{
-
-//        return sharedPref.getString(resul, "")!!
+        return sharedPref.getString(resul, "")!!
     }
 }

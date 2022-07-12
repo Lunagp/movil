@@ -18,7 +18,6 @@ class Puntaje : AppCompatActivity() {
         setContentView(binding.root)
 
         val pun = prefs.mostrar()
-        listar()
         binding.txtpun.text = pun
         val arrayAdapter:ArrayAdapter<*>
 
@@ -40,7 +39,5 @@ class Puntaje : AppCompatActivity() {
         }
     }
 
-    private fun listar() {
-        MutableMap<String>
-    }
+
 }
