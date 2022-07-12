@@ -1,8 +1,10 @@
 package com.example.prueba2l
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.prueba2l.IniciarAplicativo.Companion.prefs
 import com.example.prueba2l.databinding.ActivityResulBinding
 
 class Resul : AppCompatActivity() {
@@ -13,6 +15,10 @@ class Resul : AppCompatActivity() {
         binding = ActivityResulBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        val pun = prefs.mostrar()
+//        binding.txtresul.text = "Has ganado $pun puntos ¡Felicitaciones! "
+
+
         val bundle = intent.extras
         val dato = bundle?.getString("resul")
         val text = "Has ganado ${dato} punto ¡Felicitaciones! "
@@ -20,7 +26,6 @@ class Resul : AppCompatActivity() {
 
         binding.Sigui.setOnClickListener {
             val intent = Intent(this, Puntaje::class.java)
-            intent.putExtra("resul", dato.toString())
             startActivity(intent)
         }
 
