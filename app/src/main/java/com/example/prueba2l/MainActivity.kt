@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     var b : Boolean = false
 //    val sharedPref = getSharedPreferences("puntajes", Context.MODE_PRIVATE)
 //    var edit = sharedPref.edit()
+//    val bundle = intent.extras
+//    val jue = bundle?.getString("jue")
+//    val pala = bundle?.getString("pala")
+  var pa:Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +30,27 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val bundle = intent.extras
+        val jue = bundle?.getString("juego")
+        val pala = bundle?.getString("palabra")
+
+        var ju = jue?.toInt()
+        pa = pala?.toInt()
+        val text = "$ju y $pa"
+        Toast.makeText(this, "text " + text, Toast.LENGTH_SHORT).show()
+
+        if (ju == null){
+            conteo(null)
+        }else {
+            conteo(ju)
+        }
 
         ram()
-        conteo(null, null)
+
     }
 
-    private fun conteo(mili:Int?, coun: Int?) {
-        if (mili == null && coun == null){
+    private fun conteo(jue:Int?) {
+        if (jue == null){
             object : CountDownTimer(30000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
@@ -42,8 +60,8 @@ class MainActivity : AppCompatActivity() {
                     termine()
                 }
             }.start()
-        }else if (mili != null && coun != null) {
-            object : CountDownTimer(mili.toLong(), coun.toLong()) {
+        }else if (jue != null) {
+            object : CountDownTimer(jue.toLong(),1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                 }
@@ -108,16 +126,29 @@ class MainActivity : AppCompatActivity() {
             binding.btncorre.isEnabled = false
             binding.btnincorre.isEnabled = false
         }
+        if (pa == null){
+            object : CountDownTimer(3000, 1000) {
 
-        object : CountDownTimer(3000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                }
 
-            override fun onTick(millisUntilFinished: Long) {
-            }
+                override fun onFinish() {
+                    presionar(pal,col)
+                }
+            }.start()
+        }else {
+            object : CountDownTimer(pa!!.toLong(), 1000) {
 
-            override fun onFinish() {
-                presionar(pal,col)
-            }
-        }.start()
+                override fun onTick(millisUntilFinished: Long) {
+                    binding.txtPalabra.text = "" + millisUntilFinished/1000
+                }
+
+                override fun onFinish() {
+                    presionar(pal,col)
+                }
+            }.start()
+        }
+
     }
 
     private fun presionar(pal:String, col:Int) {
