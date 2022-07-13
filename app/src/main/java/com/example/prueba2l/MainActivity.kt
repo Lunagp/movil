@@ -1,23 +1,24 @@
 package com.example.prueba2l
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
-import android.graphics.Movie
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
+import com.example.prueba2l.IniciarAplicativo.Companion.prefs
 import com.example.prueba2l.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     var n : Int = 0
-    var p : Int = 0
+//    var p : Int = 0
+    var x : Int = 0
+    var a : Boolean = false
+    var b : Boolean = false
+//    val sharedPref = getSharedPreferences("puntajes", Context.MODE_PRIVATE)
+//    var edit = sharedPref.edit()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,18 +26,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         ram()
+        conteo(null, null)
     }
 
     private fun conteo(mili:Int?, coun: Int?) {
         if (mili == null && coun == null){
-            object : CountDownTimer(3000, 1000) {
+            object : CountDownTimer(30000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                 }
 
                 override fun onFinish() {
-                    ram()
+                    termine()
                 }
             }.start()
         }else if (mili != null && coun != null) {
@@ -46,98 +49,93 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
-                    ram()
+                    termine()
                 }
             }.start()
 
         }
 
     }
+    private fun termine(){
+        if (n == null){
+            n = 0
+            var resul = n.toString()
+            var intent = Intent(this,Resul::class.java)
+            intent.putExtra("resul", resul)
+            startActivity(intent)
+            finish()
+        }else {
+            var resul = n.toString()
+            prefs.guardar(resul)
+            var intent = Intent(this,Resul::class.java)
+            intent.putExtra("resul", resul)
+            startActivity(intent)
+            finish()
+
+        }
+    }
 
 
 
     private fun ram() {
-            val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
-            val negro: Int = resources.getColor(R.color.black)
-            val azul: Int = resources.getColor(R.color.Blue)
-            val naranja: Int = resources.getColor(R.color.Orange)
-            val verde: Int = resources.getColor(R.color.Green)
-            val rojo: Int = resources.getColor(R.color.Red)
-            val purpura: Int = resources.getColor(R.color.purple_200)
+        x = 0
+        binding.btncorre.isEnabled = true
+        binding.btnincorre.isEnabled = true
+        val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
+        val negro: Int = resources.getColor(R.color.black)
+        val azul: Int = resources.getColor(R.color.Blue)
+        val naranja: Int = resources.getColor(R.color.Orange)
+        val verde: Int = resources.getColor(R.color.Green)
+        val rojo: Int = resources.getColor(R.color.Red)
+        val purpura: Int = resources.getColor(R.color.purple_200)
 
-            val palabras = arrayOf("Amarillo", "Azul", "Naranja", "Negro", "Rojo",  "Verde", "Purpura")
-            val colores = arrayOf( amarillo,negro,azul,naranja,verde,rojo,purpura )
+        val palabras = arrayOf("Amarillo", "Azul", "Naranja", "Negro", "Rojo",  "Verde", "Purpura")
+        val colores = arrayOf( amarillo,negro,azul,naranja,verde,rojo,purpura )
 
-            val pal = palabras.random()
-            val col = colores.random()
-            binding.txtPalabra.text = pal
-            binding.txtPalabra.setTextColor(col)
+        val pal = palabras.random()
+        val col = colores.random()
+        binding.txtPalabra.text = pal
+        binding.txtPalabra.setTextColor(col)
 
+        binding.btncorre.setOnClickListener {
+            x = 1
+            binding.btncorre.isEnabled = false
+            binding.btnincorre.isEnabled = false
+        }
 
-            binding.btncorre.setOnClickListener {
-                p++
-                if (p >= 15 ){
-                    if (n == null){
-                        n = 0
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }else {
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }
-                }else {
+        binding.btnincorre.setOnClickListener {
+            x = 2
+            binding.btncorre.isEnabled = false
+            binding.btnincorre.isEnabled = false
+        }
 
-                    correcto(pal,col)
-                    ram()
-                    conteo(null,null)
-                }
-            }
-            binding.btnincorre.setOnClickListener {
-                p++
-                if (p >= 15 ){
-                    if (n == null){
-                        n = 0
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }else {
-                        var resul = n.toString()
-                        var intent = Intent(this,Resul::class.java)
-                        intent.putExtra("resul", resul)
-                        startActivity(intent)
-                    }
-                }else {
+        object : CountDownTimer(3000, 1000) {
 
-                    incorrecto(pal,col)
-                    ram()
-                    conteo(null,null)
-                }
+            override fun onTick(millisUntilFinished: Long) {
             }
 
-        if (p <= 15){
-            conteo(null, null)
-            p++
-        }else if (p >= 15 ){
-            if (n == null){
-                n = 0
-                var resul = n.toString()
-                var intent = Intent(this,Resul::class.java)
-                intent.putExtra("resul", resul)
-                startActivity(intent)
-            }else {
-                var resul = n.toString()
-                var intent = Intent(this,Resul::class.java)
-                intent.putExtra("resul", resul)
-                startActivity(intent)
+            override fun onFinish() {
+                presionar(pal,col)
+            }
+        }.start()
+    }
+
+    private fun presionar(pal:String, col:Int) {
+        when(x){
+            1 -> {
+                ram()
+                correcto(pal,col)
+            }
+            2 -> {
+                ram()
+                incorrecto(pal,col)
+            }
+            else -> {
+                ram()
+                binding.img.setImageResource(R.drawable.incorrecto)
             }
         }
     }
-
 
 
     private fun incorrecto(pal:String, col:Int) {

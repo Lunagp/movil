@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.example.prueba2l.IniciarAplicativo.Companion.prefs
 import com.example.prueba2l.databinding.ActivityPuntajeBinding
 import com.example.prueba2l.databinding.ActivityResulBinding
 
@@ -16,15 +17,17 @@ class Puntaje : AppCompatActivity() {
         binding = ActivityPuntajeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val pun = prefs.mostrar()
+        binding.txtpun.text = pun
         val arrayAdapter:ArrayAdapter<*>
 
         val puntaje = mutableListOf<String>()
         val datos = findViewById<ListView>(R.id.lista)
 
-        val bundle = intent.extras
-        val dato = bundle?.getString("resul")
+//        val bundle = intent.extras
+        val dato = pun
 
-        puntaje.add(dato.toString())
+        puntaje.add(dato)
 
         arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, puntaje)
         datos.adapter = arrayAdapter
@@ -35,4 +38,6 @@ class Puntaje : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
 }

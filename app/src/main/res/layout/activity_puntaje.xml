@@ -6,31 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".Puntaje">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingConstraints">
-
-    <ListView
-        android:id="@+id/lista"
-        android:layout_margin="50dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtpun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            />
+
+        <ListView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="50dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.053"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="100dp">
+        tools:layout_editor_absoluteX="0dp"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inicio"/>
+            android:text="Inicio" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
