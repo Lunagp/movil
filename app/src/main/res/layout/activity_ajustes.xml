@@ -64,37 +64,72 @@
             android:textColor="@color/black"
             android:textSize="18dp"/>
 
-            <CheckBox
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Amarrillo"
-                android:layout_gravity="center"></CheckBox>
-            <CheckBox
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/chAmarillo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amarrillo"
+                    android:layout_gravity="center"></CheckBox>
+                <CheckBox
+                    android:id="@+id/chAzul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Azul"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center"></CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Azul"
-                android:layout_gravity="center"></CheckBox>
-            <CheckBox
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <CheckBox
+                    android:id="@+id/chNaranja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Naranja"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"></CheckBox>
+                <CheckBox
+                    android:id="@+id/chNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Negro"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center"></CheckBox>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Naranja"
-                android:layout_gravity="center"></CheckBox>
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/chRojo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Rojo"></CheckBox>
+
+                <CheckBox
+                    android:id="@+id/chVerde"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Verde"
+                    android:layout_marginLeft="60dp"
+                    android:layout_gravity="center"></CheckBox>
+            </LinearLayout>
+
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Negro"
-                android:layout_gravity="center"></CheckBox>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rojo"
-                android:layout_gravity="center"></CheckBox>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Verde"
-                android:layout_gravity="center"></CheckBox>
-            <CheckBox
+                android:id="@+id/chPurpura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Purpura"
@@ -105,16 +140,17 @@
                 android:id="@+id/btnInicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:backgroundTint="@color/teal_700"
                 android:text="Iniciar"
+                android:layout_marginTop="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.521"
-                tools:ignore="MissingConstraints"
-                android:layout_gravity="end"/>
+                tools:ignore="MissingConstraints" />
         </LinearLayout>
 
 
