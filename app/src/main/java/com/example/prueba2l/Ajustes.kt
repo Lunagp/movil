@@ -137,8 +137,8 @@ class Ajustes : AppCompatActivity() {
         }*/
 
         binding.btnInicio.setOnClickListener {
-            val palabras = mutableListOf<String>()
-            val colores = mutableListOf<Int>( )
+            val palabras = ArrayList<String>()
+            val colores = ArrayList<Int>( )
             val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
             val negro: Int = resources.getColor(R.color.black)
             val azul: Int = resources.getColor(R.color.Blue)
@@ -177,15 +177,20 @@ class Ajustes : AppCompatActivity() {
             }
             var ju = jue.toString()
             var pa =  pala.toString()
-            var intent = Intent(this, MainActivity::class.java)
+            var intent = Intent(this, Inicio::class.java)
             intent.putExtra("juego", ju)
             intent.putExtra("palabra", pa)
-            intent.putExtra("listapalabras", palabras)
+            var tinyDB : TinyDB = TinyDB(this)
+            tinyDB.putListString("listapalabra", palabras)
+            tinyDB.putListInt("listacolores", colores)
             startActivity(intent)
             finish()
             Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
         }
     }
 }
+
+
+
 
 

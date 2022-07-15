@@ -8,8 +8,7 @@ class Prefs(val context: Context) {
     val sharedPref = context.getSharedPreferences(db, 0)
 
     fun guardar(puntaje:String){
-        sharedPref.edit().putString(resul, puntaje)
-        sharedPref.edit().commit()
+        sharedPref.edit().putString(resul, puntaje).apply()
     }
 
     fun mostrar():String{
