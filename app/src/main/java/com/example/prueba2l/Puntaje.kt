@@ -18,7 +18,6 @@ class Puntaje : AppCompatActivity() {
         setContentView(binding.root)
 
         val pun = prefs.mostrar()
-//        val claves = Map<String, Int> = pun.getAll()
         binding.txtpun.text = pun
         val arrayAdapter:ArrayAdapter<*>
 

@@ -20,7 +20,7 @@ class Inicio : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnAjustes.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Ajustes::class.java)
             startActivity(intent)
         }
         binding.btnPuntaje.setOnClickListener {
