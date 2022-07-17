@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.prueba2l.IniciarAplicativo.Companion.prefs
@@ -15,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     var n : Int = 0
 //    var p : Int = 0
     var x : Int = 0
-    var a : Boolean = false
-    var b : Boolean = false
+//    var a : Boolean = false
+//    var b : Boolean = false
 //    val sharedPref = getSharedPreferences("puntajes", Context.MODE_PRIVATE)
 //    var edit = sharedPref.edit()
 //    val bundle = intent.extras
@@ -32,20 +33,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        val pun = prefs.mostrar()
+//        binding.txtpun.text = pun
+//        val arrayAdapter: ArrayAdapter<*>
+//        var pu = pun.toInt()
 
-        val bundle = intent.extras
-        val jue = bundle?.getString("juego")
-        val pala = bundle?.getString("palabra")
+        val jue = prefs.mostrarminju()
+        val pala = prefs.mostrarminpa()
+//        val jue = bundle?.getString("juego")
+//        val pala = bundle?.getString("palabra")
 
-        var ju = jue?.toInt()
-        pa = pala?.toInt()
-        val text = "$ju y $pa"
-        Toast.makeText(this, "text " + text, Toast.LENGTH_SHORT).show()
-
-        if (ju == null){
+//        var ju = jue?.toInt()
+//        pa = pala?.toInt()
+        pa = pala
+        if (jue == 0){
             conteo(null)
         }else {
-            conteo(ju)
+            conteo(jue)
         }
 
         ram()
@@ -114,13 +118,24 @@ class MainActivity : AppCompatActivity() {
 
         var  tinyDB : TinyDB = TinyDB(this)
 
+//        if (tinyDB == null){
+//            palabras = arrayOf("Amarillo", "Azul", "Naranja", "Negro", "Rojo",  "Verde", "Purpura")
+//            colores = arrayOf( amarillo,negro,azul,naranja,verde,rojo,purpura )
+//        }else{
+//            palabras = tinyDB.getListString("listapalabra")
+//            colores = tinyDB .getListInt("listacolores")
+//        }
+//
         var palabra = tinyDB.getListString("listapalabra")
-        var color = tinyDB .getListInt("listacolores")
+        var color = tinyDB.getListInt("listacolores")
         //////////////////////////////////
         val palabras = arrayOf("Amarillo", "Azul", "Naranja", "Negro", "Rojo",  "Verde", "Purpura")
         val colores = arrayOf( amarillo,negro,azul,naranja,verde,rojo,purpura )
 
-        if (palabra == null && color == null){
+        if(palabra.size == 0 && color.size == 0){
+            pal = palabras.random()
+            col = colores.random()
+        }else if (palabra == null && color == null){
             pal = palabras.random()
             col = colores.random()
         }else{
@@ -142,11 +157,11 @@ class MainActivity : AppCompatActivity() {
             binding.btncorre.isEnabled = false
             binding.btnincorre.isEnabled = false
         }
-        if (pa == null){
+
+        if (pa == 0){
             object : CountDownTimer(3000, 1000) {
 
-                override fun onTick(millisUntilFinished: Long) {
-                }
+                override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
                     presionar(pal.toString(),col)
@@ -155,9 +170,7 @@ class MainActivity : AppCompatActivity() {
         }else {
             object : CountDownTimer(pa!!.toLong(), 1000) {
 
-                override fun onTick(millisUntilFinished: Long) {
-                    binding.txtPalabra.text = "" + millisUntilFinished/1000
-                }
+                override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
                     presionar(pal.toString(),col)

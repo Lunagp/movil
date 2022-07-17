@@ -19,38 +19,42 @@ class Puntaje : AppCompatActivity() {
 
         val pun = prefs.mostrar()
         binding.txtpun.text = pun
-        val arrayAdapter:ArrayAdapter<*>
+        val arrayAdapter: ArrayAdapter<*>
         var pu = pun.toInt()
 
-        val puntaje = arrayOfNulls<Int>(4)
-        val datos = findViewById<ListView>(R.id.lista)
+        val puntaje = ArrayList<Int>()
+//        val datos = findViewById<ListView>(R.id.lista)
 
         var dato = pu
+        puntaje.add(dato)
 
-        puntaje[0] = 0
-        puntaje[1] = 0
-        puntaje[2] = 0
-        puntaje[3] = 0
-        puntaje[4] = 0
+        var tinyDB : TinyDB = TinyDB(this)
+        tinyDB.putListInt("listapuntaje", puntaje)
 
-        if (puntaje == null){
-            puntaje[0] = dato
-//        }else if (puntaje[0]  dato){
-//
-//        }
-//        val bundle = intent.extras
+//        var dato = pu
+//        puntaje.add(dato)
 
-
-
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, puntaje)
-        datos.adapter = arrayAdapter
-
-
-        binding.btnInicio.setOnClickListener {
-            val intent = Intent(this,Inicio::class.java)
-            startActivity(intent)
+        if (puntaje.size == 0) {
+            puntaje.add(dato)
+//            puntaje[0] = dato
+        }else if (puntaje.size == 1) {
+            puntaje[1] = dato
+        }else if (puntaje.size == 2){
+            puntaje[2] = dato
+        }else if (puntaje.size == 3){
+            puntaje[3] = dato
+        }else if (puntaje.size == 4){
+            puntaje[4] = dato
         }
-    }
 
+        var punta = puntaje.sortedDescending()
 
+        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, punta)
+        binding.lista.adapter = arrayAdapter
+
+            binding.btnInicio.setOnClickListener {
+                val intent = Intent(this, Inicio::class.java)
+                startActivity(intent)
+            }
+        }
 }

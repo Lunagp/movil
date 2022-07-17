@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.prueba2l.IniciarAplicativo.Companion.prefs
 import com.example.prueba2l.databinding.ActivityAjustesBinding
 
 class Ajustes : AppCompatActivity() {
@@ -138,7 +139,7 @@ class Ajustes : AppCompatActivity() {
 
         binding.btnInicio.setOnClickListener {
             val palabras = ArrayList<String>()
-            val colores = ArrayList<Int>( )
+            val colores = ArrayList<Int>()
             val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
             val negro: Int = resources.getColor(R.color.black)
             val azul: Int = resources.getColor(R.color.Blue)
@@ -175,11 +176,12 @@ class Ajustes : AppCompatActivity() {
                 palabras.add("Purpura")
                 colores.add(purpura)
             }
-            var ju = jue.toString()
-            var pa =  pala.toString()
+
+//            var ju = jue.toString()
+//            var pa =  pala.toString()
+            prefs.guardarminju(jue)
+            prefs.guardarminpa(pala)
             var intent = Intent(this, Inicio::class.java)
-            intent.putExtra("juego", ju)
-            intent.putExtra("palabra", pa)
             var tinyDB : TinyDB = TinyDB(this)
             tinyDB.putListString("listapalabra", palabras)
             tinyDB.putListInt("listacolores", colores)
