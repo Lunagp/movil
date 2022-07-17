@@ -22,7 +22,10 @@ class MainActivity : AppCompatActivity() {
 //    val bundle = intent.extras
 //    val jue = bundle?.getString("jue")
 //    val pala = bundle?.getString("pala")
-  var pa:Int? = null
+    var pa:Int? = null
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun conteo(jue:Int?) {
         if (jue == null){
-            object : CountDownTimer(30000, 1000) {
+            object : CountDownTimer(31000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                 }
@@ -97,6 +100,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun ram() {
         x = 0
+        var col = 0
+        var pal:String? = null
         binding.btncorre.isEnabled = true
         binding.btnincorre.isEnabled = true
         val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
@@ -107,11 +112,22 @@ class MainActivity : AppCompatActivity() {
         val rojo: Int = resources.getColor(R.color.Red)
         val purpura: Int = resources.getColor(R.color.purple_200)
 
+        var  tinyDB : TinyDB = TinyDB(this)
+
+        var palabra = tinyDB.getListString("listapalabra")
+        var color = tinyDB .getListInt("listacolores")
+        //////////////////////////////////
         val palabras = arrayOf("Amarillo", "Azul", "Naranja", "Negro", "Rojo",  "Verde", "Purpura")
         val colores = arrayOf( amarillo,negro,azul,naranja,verde,rojo,purpura )
 
-        val pal = palabras.random()
-        val col = colores.random()
+        if (palabra == null && color == null){
+            pal = palabras.random()
+            col = colores.random()
+        }else{
+            pal = palabra.random()
+            col = color.random()
+        }
+
         binding.txtPalabra.text = pal
         binding.txtPalabra.setTextColor(col)
 
@@ -133,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
-                    presionar(pal,col)
+                    presionar(pal.toString(),col)
                 }
             }.start()
         }else {
@@ -144,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
-                    presionar(pal,col)
+                    presionar(pal.toString(),col)
                 }
             }.start()
         }

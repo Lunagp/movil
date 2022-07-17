@@ -20,14 +20,27 @@ class Puntaje : AppCompatActivity() {
         val pun = prefs.mostrar()
         binding.txtpun.text = pun
         val arrayAdapter:ArrayAdapter<*>
+        var pu = pun.toInt()
 
-        val puntaje = mutableListOf<String>()
+        val puntaje = arrayOfNulls<Int>(4)
         val datos = findViewById<ListView>(R.id.lista)
 
-//        val bundle = intent.extras
-        val dato = pun
+        var dato = pu
 
-        puntaje.add(dato)
+        puntaje[0] = 0
+        puntaje[1] = 0
+        puntaje[2] = 0
+        puntaje[3] = 0
+        puntaje[4] = 0
+
+        if (puntaje == null){
+            puntaje[0] = dato
+//        }else if (puntaje[0]  dato){
+//
+//        }
+//        val bundle = intent.extras
+
+
 
         arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, puntaje)
         datos.adapter = arrayAdapter

@@ -3,6 +3,7 @@ package com.example.prueba2l
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.prueba2l.databinding.ActivityInicioBinding
 import com.example.prueba2l.databinding.ActivityMainBinding
 
@@ -16,8 +17,8 @@ class Inicio : AppCompatActivity() {
 
 
         binding.btnInicio.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
         }
         binding.btnAjustes.setOnClickListener {
             val intent = Intent(this, Ajustes::class.java)
