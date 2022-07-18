@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     var n : Int = 0
     var x : Int = 0
     var pa:Int? = null
+    var p : Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +43,9 @@ class MainActivity : AppCompatActivity() {
         if (jue == null){
             object : CountDownTimer(31000, 1000) {
 
-                override fun onTick(millisUntilFinished: Long) {}
+                override fun onTick(millisUntilFinished: Long) {
+                    binding.numjuego.text = "" + millisUntilFinished/1000
+                }
 
                 override fun onFinish() {
                     termine()
@@ -105,12 +108,18 @@ class MainActivity : AppCompatActivity() {
         if(palabra.size == 0 && color.size == 0){
             pal = palabras.random()
             col = colores.random()
+            p++
+            binding.numpala.text = p.toString()
         }else if (palabra == null && color == null){
             pal = palabras.random()
             col = colores.random()
+            p++
+            binding.numpala.text = p.toString()
         }else{
             pal = palabra.random()
             col = color.random()
+            p++
+            binding.numpala.text = p.toString()
         }
 
         binding.txtPalabra.text = pal
@@ -169,31 +178,38 @@ class MainActivity : AppCompatActivity() {
     private fun incorrecto(pal:String, col:Int) {
         if (pal == "Amarillo" && col != -400274){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Negro" && col != -16777216){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Azul" && col != -16776961){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Naranja" && col != -360145){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Verde" && col != -16729299){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Rojo" && col != -3210997){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Purpura" && col != -4487428){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else{
             Toast.makeText(this, "Fallaste", Toast.LENGTH_SHORT).show()
@@ -204,31 +220,38 @@ class MainActivity : AppCompatActivity() {
     private fun correcto(pal:String, col:Int) {
         if (pal == "Amarillo" && col == -400274){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Negro" && col == -16777216){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Azul" && col == -16776961){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Naranja" && col == -360145){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Verde" && col == -16729299){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Rojo" && col == -3210997){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else if (pal == "Purpura" && col == -4487428){
             n = n+1
-            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
+            binding.numcorrectas.text = n.toString()
+//            Toast.makeText(this, "Has ganado ${n}", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.correcto)
         }else {
             Toast.makeText(this, "Fallaste", Toast.LENGTH_SHORT).show()

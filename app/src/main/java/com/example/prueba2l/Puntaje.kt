@@ -14,6 +14,8 @@ class Puntaje : AppCompatActivity() {
     var n1 :Int = 0
     var n2 :Int = 0
     var n3 :Int = 0
+    var n4 :Int = 0
+    var n5 :Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,21 +33,52 @@ class Puntaje : AppCompatActivity() {
         n1 = prefs.mostrar1()
         n2 = prefs.mostrar2()
         n3 = prefs.mostrar3()
+        n4 = prefs.mostrar4()
+        n5 = prefs.mostrar5()
+        var n6 = prefs.mostrar6()
 
         if (dato > n1) {
+            if (n1 !=  0){
+                var n11 = prefs.mostrar1()
+                prefs.guardar6(n11)
+            }else if (n6 !=  0){
+                var n11 = prefs.mostrar1()
+                prefs.guardar2(n11)
+                n2 = prefs.mostrar2()
+            }
+
             prefs.guardar1(dato)
             n1 = prefs.mostrar1()
         }else if (dato > n2) {
+//            if (n6 !=  0 && n6 > n2){
+//                var n11 = prefs.mostrar1()
+//                prefs.guardar2(n11)
+//                n2 = prefs.mostrar2()
+//                n6=0
+//            }
             prefs.guardar2(dato)
             n2 = prefs.mostrar2()
         }else if (dato > n3){
+            if (n6 !=  0){
+                var n11 = prefs.mostrar1()
+                prefs.guardar2(n11)
+                n2 = prefs.mostrar2()
+            }
             prefs.guardar3(dato)
             n3 = prefs.mostrar3()
+        }else if (dato > n4){
+            prefs.guardar4(dato)
+            n4 = prefs.mostrar4()
+        }else if (dato > n5){
+            prefs.guardar5(dato)
+            n5 = prefs.mostrar5()
         }
 
         puntaje.add(n1)
         puntaje.add(n2)
         puntaje.add(n3)
+        puntaje.add(n4)
+        puntaje.add(n5)
 
         var punta = puntaje.sortedDescending()
 

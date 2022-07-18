@@ -10,6 +10,9 @@ class Prefs(val context: Context) {
     val pun11 = "pun1"
     val pun22 = "pun2"
     val pun33 = "pun3"
+    val pun44 = "pun4"
+    val pun55 = "pun5"
+    val pun66 = "pun5"
     val sharedPref = context.getSharedPreferences(db, 0)
 
     fun guardar(puntaje:String){
@@ -52,6 +55,27 @@ class Prefs(val context: Context) {
     }
     fun mostrar3():Int{
         return sharedPref.getInt(pun33, 0)!!
+    }
+
+    fun guardar4(pun4:Int){
+        sharedPref.edit().putInt(pun44, pun4).apply()
+    }
+    fun mostrar4():Int{
+        return sharedPref.getInt(pun44, 0)!!
+    }
+
+    fun guardar5(pun5:Int){
+        sharedPref.edit().putInt(pun55, pun5).apply()
+    }
+    fun mostrar5():Int{
+        return sharedPref.getInt(pun55, 0)!!
+    }
+
+    fun guardar6(pun6:Int){
+        sharedPref.edit().putInt(pun66, pun6).apply()
+    }
+    fun mostrar6():Int{
+        return sharedPref.getInt(pun66, 0)!!
     }
 
 

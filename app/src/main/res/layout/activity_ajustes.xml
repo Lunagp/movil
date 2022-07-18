@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:backgroundTint="@color/teal_700"
-                android:text="Iniciar"
+                android:text="Guardar"
                 android:layout_marginTop="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

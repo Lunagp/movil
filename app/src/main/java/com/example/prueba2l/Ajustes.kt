@@ -112,7 +112,6 @@ class Ajustes : AppCompatActivity() {
             tinyDB.putListInt("listacolores", colores)
             startActivity(intent)
             finish()
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
         }
     }
 }
