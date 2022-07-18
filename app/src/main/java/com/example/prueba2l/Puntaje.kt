@@ -11,6 +11,10 @@ import com.example.prueba2l.databinding.ActivityResulBinding
 
 class Puntaje : AppCompatActivity() {
     private lateinit var binding: ActivityPuntajeBinding
+    var n1 :Int = 0
+    var n2 :Int = 0
+    var n3 :Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_puntaje)
@@ -18,34 +22,30 @@ class Puntaje : AppCompatActivity() {
         setContentView(binding.root)
 
         val pun = prefs.mostrar()
-        binding.txtpun.text = pun
         val arrayAdapter: ArrayAdapter<*>
-        var pu = pun.toInt()
+        var dato = pun.toInt()
+        binding.txtpun1.text  =  "Tu puntuación es: $dato"
 
         val puntaje = ArrayList<Int>()
-//        val datos = findViewById<ListView>(R.id.lista)
 
-        var dato = pu
-        puntaje.add(dato)
+        n1 = prefs.mostrar1()
+        n2 = prefs.mostrar2()
+        n3 = prefs.mostrar3()
 
-        var tinyDB : TinyDB = TinyDB(this)
-        tinyDB.putListInt("listapuntaje", puntaje)
-
-//        var dato = pu
-//        puntaje.add(dato)
-
-        if (puntaje.size == 0) {
-            puntaje.add(dato)
-//            puntaje[0] = dato
-        }else if (puntaje.size == 1) {
-            puntaje[1] = dato
-        }else if (puntaje.size == 2){
-            puntaje[2] = dato
-        }else if (puntaje.size == 3){
-            puntaje[3] = dato
-        }else if (puntaje.size == 4){
-            puntaje[4] = dato
+        if (dato > n1) {
+            prefs.guardar1(dato)
+            n1 = prefs.mostrar1()
+        }else if (dato > n2) {
+            prefs.guardar2(dato)
+            n2 = prefs.mostrar2()
+        }else if (dato > n3){
+            prefs.guardar3(dato)
+            n3 = prefs.mostrar3()
         }
+
+        puntaje.add(n1)
+        puntaje.add(n2)
+        puntaje.add(n3)
 
         var punta = puntaje.sortedDescending()
 

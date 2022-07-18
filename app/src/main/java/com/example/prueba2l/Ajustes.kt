@@ -18,13 +18,7 @@ class Ajustes : AppCompatActivity() {
     val spinpal = mutableListOf("2 segundos", "3 segundos", "4 segundos")
     var jue : Int = 0
     var pala : Int  = 0
- /*   var ama = true
-    var azu = true
-    var nar = true
-    var neg = true
-    var roj = true
-    var ver = true
-    var pur = true   */
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,62 +27,6 @@ class Ajustes : AppCompatActivity() {
         setContentView(binding.root)
 
         referenciar()
-    }
-
-    private fun colores() {
-        val palabras = mutableListOf<String>()
-        val colores = mutableListOf<Int>( )
-        val amarillo: Int = ContextCompat.getColor( this, R.color.yellow)
-        val negro: Int = resources.getColor(R.color.black)
-        val azul: Int = resources.getColor(R.color.Blue)
-        val naranja: Int = resources.getColor(R.color.Orange)
-        val verde: Int = resources.getColor(R.color.Green)
-        val rojo: Int = resources.getColor(R.color.Red)
-        val purpura: Int = resources.getColor(R.color.purple_200)
-
-        if(binding.chAmarillo.isChecked){
-            palabras.add("Amarillo")
-            colores.add(amarillo)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-        }
-        if(binding.chAzul.isChecked){
-            palabras.add("Azul")
-            colores.add(azul)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-
-        }
-        if(binding.chNaranja.isChecked){
-            palabras.add("Naranja")
-            colores.add(naranja)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-        }
-        if(binding.chNegro.isChecked){
-            palabras.add("Negro")
-            colores.add(negro)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-        }
-        if(binding.chVerde.isChecked){
-            palabras.add("Verde")
-            colores.add(verde)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-        }
-        if(binding.chAmarillo.isChecked){
-            palabras.add("Rojo")
-            colores.add(rojo)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-        }
-        if(binding.chAmarillo.isChecked){
-            palabras.add("Purpura")
-            colores.add(purpura)
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-
-        }
     }
 
     private fun referenciar() {
@@ -125,17 +63,6 @@ class Ajustes : AppCompatActivity() {
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
-
-        /*binding.btnInicio.setOnClickListener {
-            *//*var ju = jue.toString()
-            var pa =  pala.toString()
-            var intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("juego", ju)
-            intent.putExtra("palabra", pa)
-            startActivity(intent)
-            finish()*//*
-            Toast.makeText(this, ""+ palabras, Toast.LENGTH_SHORT).show()
-        }*/
 
         binding.btnInicio.setOnClickListener {
             val palabras = ArrayList<String>()
@@ -177,8 +104,6 @@ class Ajustes : AppCompatActivity() {
                 colores.add(purpura)
             }
 
-//            var ju = jue.toString()
-//            var pa =  pala.toString()
             prefs.guardarminju(jue)
             prefs.guardarminpa(pala)
             var intent = Intent(this, Inicio::class.java)

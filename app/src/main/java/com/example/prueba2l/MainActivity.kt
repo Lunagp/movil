@@ -14,18 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     var n : Int = 0
-//    var p : Int = 0
     var x : Int = 0
-//    var a : Boolean = false
-//    var b : Boolean = false
-//    val sharedPref = getSharedPreferences("puntajes", Context.MODE_PRIVATE)
-//    var edit = sharedPref.edit()
-//    val bundle = intent.extras
-//    val jue = bundle?.getString("jue")
-//    val pala = bundle?.getString("pala")
     var pa:Int? = null
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,18 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        val pun = prefs.mostrar()
-//        binding.txtpun.text = pun
-//        val arrayAdapter: ArrayAdapter<*>
-//        var pu = pun.toInt()
 
         val jue = prefs.mostrarminju()
         val pala = prefs.mostrarminpa()
-//        val jue = bundle?.getString("juego")
-//        val pala = bundle?.getString("palabra")
 
-//        var ju = jue?.toInt()
-//        pa = pala?.toInt()
         pa = pala
         if (jue == 0){
             conteo(null)
@@ -60,8 +42,7 @@ class MainActivity : AppCompatActivity() {
         if (jue == null){
             object : CountDownTimer(31000, 1000) {
 
-                override fun onTick(millisUntilFinished: Long) {
-                }
+                override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
                     termine()
@@ -70,17 +51,15 @@ class MainActivity : AppCompatActivity() {
         }else if (jue != null) {
             object : CountDownTimer(jue.toLong(),1000) {
 
-                override fun onTick(millisUntilFinished: Long) {
-                }
+                override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
                     termine()
                 }
             }.start()
-
         }
-
     }
+
     private fun termine(){
         if (n == null){
             n = 0
@@ -96,7 +75,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("resul", resul)
             startActivity(intent)
             finish()
-
         }
     }
 
@@ -118,14 +96,6 @@ class MainActivity : AppCompatActivity() {
 
         var  tinyDB : TinyDB = TinyDB(this)
 
-//        if (tinyDB == null){
-//            palabras = arrayOf("Amarillo", "Azul", "Naranja", "Negro", "Rojo",  "Verde", "Purpura")
-//            colores = arrayOf( amarillo,negro,azul,naranja,verde,rojo,purpura )
-//        }else{
-//            palabras = tinyDB.getListString("listapalabra")
-//            colores = tinyDB .getListInt("listacolores")
-//        }
-//
         var palabra = tinyDB.getListString("listapalabra")
         var color = tinyDB.getListInt("listacolores")
         //////////////////////////////////
@@ -177,7 +147,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }.start()
         }
-
     }
 
     private fun presionar(pal:String, col:Int) {
@@ -196,7 +165,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun incorrecto(pal:String, col:Int) {
         if (pal == "Amarillo" && col != -400274){
@@ -231,7 +199,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Fallaste", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.incorrecto)
         }
-
     }
 
     private fun correcto(pal:String, col:Int) {
@@ -267,11 +234,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Fallaste", Toast.LENGTH_SHORT).show()
             binding.img.setImageResource(R.drawable.incorrecto)
         }
-
-
     }
-
 }
-
-
-

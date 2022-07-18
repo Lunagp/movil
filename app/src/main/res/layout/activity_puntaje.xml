@@ -19,11 +19,25 @@
             android:id="@+id/txtpun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="Top 3 de mejores puntajes"
             android:layout_margin="50dp"
+            />
+
+        <TextView
+            android:id="@+id/txtpun1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
             />
 
         <ListView
             android:id="@+id/lista"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="50dp" />

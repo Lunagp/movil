@@ -15,7 +15,6 @@ class Inicio : AppCompatActivity() {
         binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnInicio.setOnClickListener {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

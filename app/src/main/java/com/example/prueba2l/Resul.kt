@@ -15,28 +15,16 @@ class Resul : AppCompatActivity() {
         binding = ActivityResulBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val pun = prefs.mostrar()
-//        binding.txtresul.text = "Has ganado $pun puntos ¡Felicitaciones! "
-
-
         val bundle = intent.extras
         val dato = bundle?.getString("resul")
-        val text = "Has ganado ${dato} punto ¡Felicitaciones! "
+        val text = "Has ganado ${dato} punto ¡Felicitaciones!"
         binding.txtresul.text = text
 
         binding.Sigui.setOnClickListener {
             val intent = Intent(this, Puntaje::class.java)
             startActivity(intent)
         }
-
-
-
-        /*val resul = mutableListOf<String>()
-        resul.add(dato.toString())
-        println(resul[0])*/
-
     }
-
 }
 
 
