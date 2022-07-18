@@ -19,7 +19,7 @@ class Prefs(val context: Context) {
         sharedPref.edit().putString(resul, puntaje).apply()
     }
     fun mostrar():String{
-        return sharedPref.getString(resul, "")!!
+        return sharedPref.getString(resul, "0")!!
     }
 
     fun guardarminju(minju:Int){
